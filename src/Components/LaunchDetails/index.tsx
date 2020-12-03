@@ -13,7 +13,7 @@ const LaunchInfo = () => {
     if (location.state) {
       const ids = location.state.toString();
 
-      console.log(ids);
+      console.log('sddsd' , ids);
 
       setstate(ids);
     } else {
@@ -31,9 +31,9 @@ const LaunchInfo = () => {
     return <h1>{loading}</h1>;
   } else if (error || !data) {
     let collection: any = localStorage.getItem("LaunchDetail");
-    let offlineData = JSON.parse(collection);
+    let data = JSON.parse(collection);
 
-    return <LaunchDetail data={offlineData} />;
+    return <LaunchDetail data={data} />;
   } else {
     localStorage.setItem("LaunchDetail", JSON.stringify(data));
 

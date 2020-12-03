@@ -1,69 +1,47 @@
-const cacheName = "v1";
+var StaticCaches = "offline-caches";
 
-const cacheAssets = [
-        "/static/js/2.fcaac8f0.chunk.js",
-        "/static/js/main.1869c94c.chunk.js",
-        "/static/js/main.1b742d80.chunk.css",
-        "/static/js/runtime-main.c0d7d7a6.js",
+self.addEventListener("install", function (event) {
+  event.waitUntil(
+    caches.open(StaticCaches).then(function (cache) {
+      return cache.addAll([
         "/static/js/main.chunk.js",
         "/static/js/0.chunk.js",
         "/static/js/bundle.js",
         "/index.html",
         "/",
-];
-
-self.addEventListener("install", (e) => {
-  console.log("Service Worker: Installed");
-
-  e.waitUntil(
-    caches
-      .open(cacheName)
-      .then((cache) => {
-        console.log("Service Worker: Caching Files");
-        cache.addAll(cacheAssets);
-      })
-      .then(() => self.skipWaiting())
+      ]);
+    })
   );
 });
 
-self.addEventListener("fetch", (event) => {
-  console.log("Fetch event for ", event.request.url);
+self.addEventListener("fetch", function (event) {
   event.respondWith(
-    caches
-      .match(event.request)
-      .then((response) => {
-        if (response) {
-          console.log("Found ", event.request.url, " in cache");
-          return response;
-        }
-        console.log("Network request for ", event.request.url);
-        return fetch(event.request).then((response) => {
-          return caches.open(cacheName).then((cache) => {
-            cache.put(event.request.url, response.clone());
-            return response;
-          });
-        });
-      })
-      .catch((error) => {
-        console.log("error in loading pages");
-      })
+    caches.match(event.request).then(function (response) {
+      if (response) {
+        return response;
+      }
+      let requestURL = event.request.clone();
+
+      return fetch(requestURL);
+    })
   );
 });
 
-self.addEventListener("activate", (event) => {
-  console.log("Activating new service worker...");
-
-  const cacheAllowlist = [cacheName];
-
+self.addEventListener("activate", function (event) {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
+    caches.keys().then(function (cachesName) {
       return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheAllowlist.indexOf(cacheName) === -1) {
+        cachesName
+          .filter(function (cacheName) {
+            return (
+              cacheName.startsWith("offline-") && cacheName != StaticCaches
+            );
+          })
+          .map(function (cacheName) {
             return caches.delete(cacheName);
-          }
-        })
+          })
       );
     })
   );
 });
+
