@@ -1,14 +1,9 @@
-export default function sWorker() {
-    let sw = `${process.env.PUBLIC_URL}/sw.js`;
+// Make sure sw are supported
+export default function swDev(){
+   
   
-    if (!navigator.serviceWorker) return;
+  let swUrl = `${process.env.PUBLIC_URL}/sw.js`
+  navigator.serviceWorker.register(swUrl).then((result) => console.log(result) )
   
-    navigator.serviceWorker
-      .register(sw)
-      .then(function () {
-        console.log("Service Worker Registered");
-      })
-      .catch(function () {
-        console.log("Registration Failed");
-      });
-  }
+
+}
