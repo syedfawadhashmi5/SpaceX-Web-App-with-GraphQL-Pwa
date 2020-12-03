@@ -1,0 +1,44 @@
+.Profile {
+    height: 100vh;
+    max-height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden auto;
+    top: 12px;
+    transition: top 500ms ease-in;
+  }
+  
+  
+  .title {
+    margin-top: 22px;
+    margin-bottom: 17px;
+  }
+  
+  .success {
+    color: #2cb84b;
+  }
+  
+  .failed {
+    color: #ff695e;
+  }
+  
+  .image-list {
+
+    width: 100%;
+    margin-top: 38px;
+
+  }
+  
+  .image_reponsive {
+    width: 32%;
+    height: 23em;
+    margin: 3px;
+  }
+
+  .heading {
+    background-color: black;
+    color: white;
+    width: 100%;
+    margin: 0;
+    padding: 19px;
+    margin: 0 0 26px 0;
+  }

@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render App component should render a div in App 1`] = `
+<div>
+  <BrowserRouter>
+    <Route
+      exact={true}
+      path="/"
+    >
+      <div
+        className="componentDiv"
+      >
+        <LaunchListContainer />
+        <LaunchInfo />
+      </div>
+    </Route>
+  </BrowserRouter>
+</div>
+`;
