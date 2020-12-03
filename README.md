@@ -1,46 +1,46 @@
-# Getting Started with Create React App
+Bootcamp 2020 (English) : Building SpaceX App with QraphQL
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+npx create-react-app spacex --typyscript
 
-## Available Scripts
+then run this cammand 
 
-In the project directory, you can run:
+yarn add graphql -tag graphql
 
-### `yarn start`
+after this run this cammand
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+yarn add -D @apollo/client
 
-### `yarn test`
+after this run codegen cli cammand
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+yarn add -D @graphql-codegen/cli
 
-### `yarn build`
+after run this cammand 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+yarn graphql-codegen init
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+after init few step you would type
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1 Where is your schema?: (path or url) https://spacexdata.herokuapp.com/graphql
 
-### `yarn eject`
+2 Where are your operations and fragments?: ./src/components/**/*.{ts,tsx}
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3 ? Where to write the output: (src/generated/graphql.tsx) : press emter 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4 ? Do you want to generate an introspection file? (Y/n) : no
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+5 How to name the config file? codegen.yml
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+6 What script in package.json should run the codegen?  codegen
 
-## Learn More
+after setup querys you need to run this cammand
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+7 yarn codegen
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+when you see error then you cope this command in error section yarn add -D @graphql-codegen/typescript-operations
+
+8 yarn codegen again run this cammand
+
+Url ( https://spacex-web-app-v1.web.app/ )
+
+
